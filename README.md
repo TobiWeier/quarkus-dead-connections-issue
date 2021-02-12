@@ -2,7 +2,7 @@
 
 1. start database
 
-        docker run -d -e POSTGRES_USER=hibernate -e POSTGRES_PASSWORD=hibernate -e POSTGRES_DB=hibernate_db -e POSTGRES_PORT=5432 --name mydb postgres
+        docker run -d -e POSTGRES_USER=hibernate -e POSTGRES_PASSWORD=hibernate -e POSTGRES_DB=hibernate_db -e POSTGRES_PORT=5432 --name mydb -p 5432:5432 postgres
 2. start quarkus
 
         mvn clean quarkus:dev
@@ -17,7 +17,7 @@
          docker kill mydb
 6. restart database
 
-         docker start my
+         docker start mydb
 
 Now repeat steps 5 and 6 several times and observe the metrics values "vendor_agroal_available_count" and the health status.
 If the maximum number of connections is reached, the pool status remains permanently on DOWN, even when the database is available again.
